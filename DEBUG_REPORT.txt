@@ -1,0 +1,724 @@
+================================================================================
+           AGGRIGO — COMPREHENSIVE MERN STACK DEBUG REPORT
+           Generated: 2026-03-29
+           Examined by: Antigravity AI (Expert MERN Architect)
+================================================================================
+
+This report is categorized into:
+  [CRITICAL]  — App will CRASH or FAIL to start / authenticate / route correctly.
+  [WARNING]   — Will cause subtle bugs, security holes, or poor UX.
+  [INFO]      — Best-practice notes and minor cleanup suggestions.
+
+================================================================================
+                    SECTION 1 — ENVIRONMENT & CONFIGURATION
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+[CRITICAL - C1] FRONTEND .env FILE IS MISSING
+────────────────────────────────────────────────────────────────────────────────
+File    : e:\AggriGo\frontend\.env   (DOES NOT EXIST)
+Problem : The frontend has a `.env.example` file but the actual `.env` file
+          is missing entirely. Vite reads from `.env`, not `.env.example`.
+          As a result, `import.meta.env.VITE_API_URL` resolves to `undefined`,
+          and api.js falls back to 'http://localhost:5000/api' only because
+          of the `|| fallback` guard. This is fragile and breaks in production.
+
+Fix     : Create `e:\AggriGo\frontend\.env` with:
+          ─────────────────────────────────────────
+          VITE_API_URL=http://localhost:5000/api
+          ─────────────────────────────────────────
+          NOTE: All Vite env vars MUST be prefixed with VITE_ to be exposed
+          to the browser bundle.
+
+────────────────────────────────────────────────────────────────────────────────
+[CRITICAL - C2] `dotenv.config()` CALLED TOO LATE — AFTER ROUTE REGISTRATION
+────────────────────────────────────────────────────────────────────────────────
+File    : e:\AggriGo\backend\server.js  (Lines 16–22)
+Problem : `const app = express()` is declared on line 16, and immediately
+          on line 19 the cart route is mounted:
+              app.use('/api/cart', cartRoutes);
+          But `dotenv.config()` is not called until line 22 AFTER this.
+          This means any module that cart.js imports (and Cart.js imports
+          mongoose) cannot read `process.env.MONGODB_URI` at import time
+          if it evaluates at the top level.
+          More critically, `connectDB()` on line 51 also runs before dotenv
+          has been called, so `process.env.MONGODB_URI` is **undefined**
+          when the DB connection is attempted.
+
+Current (BROKEN) order:
+    Line 16: const app = express();
+    Line 19: app.use('/api/cart', cartRoutes);   ← route mounted
+    Line 22: dotenv.config();                     ← env loaded TOO LATE
+    Line 51: connectDB();                         ← MONGODB_URI is undefined
+
+Fix     : Move `dotenv.config()` to be the VERY FIRST LINE of server.js,
+          before any imports or code:
+
+          ─────────────────────────────────────────
+          // server.js — TOP OF FILE
+          import dotenv from 'dotenv';
+          dotenv.config();   // ← MUST BE FIRST
+
+          import express from 'express';
+          import cors from 'cors';
+          // ... rest of imports
+          ─────────────────────────────────────────
+          NOTE: With ES Modules (`"type": "module"`), `import` statements
+          are hoisted but `dotenv.config()` is a call — so it will run after
+          all imports finish. The safe approach is to either use a separate
+          config file or ensure all env-reading happens inside functions
+          (which connectDB() already does correctly since it's called after
+          dotenv.config() — but line 19 cart route is still registered too early).
+
+          IMMEDIATE FIX: Move the cart route registration to line 106 with all
+          other routes, and move dotenv.config() to the top.
+
+────────────────────────────────────────────────────────────────────────────────
+[CRITICAL - C3] JWT_SECRET IS A PLACEHOLDER VALUE
+────────────────────────────────────────────────────────────────────────────────
+File    : e:\AggriGo\backend\.env  (Line 8)
+Current : JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+Problem : This is the default placeholder text. If left as-is, it is a severe
+          security vulnerability — any attacker can forge JWT tokens since the
+          secret is publicly known. This must be changed before any real use.
+
+Fix     : Replace with a strong random secret of at least 64 characters:
+          ─────────────────────────────────────────
+          JWT_SECRET=a94f7c2e1b8d3f6a0e9c5b2d7f4a1e8c3b6f9d2a5e8c1b4d7f0a3e6c9b2d5f8
+          ─────────────────────────────────────────
+          Generate one with: node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+
+────────────────────────────────────────────────────────────────────────────────
+[WARNING - W1] NODE_ENV IS SET TO 'production' IN LOCAL .env
+────────────────────────────────────────────────────────────────────────────────
+File    : e:\AggriGo\backend\.env  (Line 3)
+Current : NODE_ENV=production
+Problem : With NODE_ENV=production, the auth cookie is set with:
+              secure: true      → requires HTTPS
+              sameSite: 'none'  → requires HTTPS for cross-origin
+          On localhost (HTTP), the browser will SILENTLY DROP the cookie,
+          meaning login will appear to succeed but the session cookie is never
+          stored. Every subsequent request to a protected route returns 401.
+          This is the #1 reason for "I logged in but I'm being redirected to
+          login again" bugs.
+
+Fix     : Change for local development:
+          ─────────────────────────────────────────
+          NODE_ENV=development
+          ─────────────────────────────────────────
+          Only set NODE_ENV=production in your Vercel environment variables
+          dashboard, NOT in the committed .env file.
+
+────────────────────────────────────────────────────────────────────────────────
+[WARNING - W2] NO VITE PROXY CONFIGURED — CORS ERRORS POSSIBLE IN DEVELOPMENT
+────────────────────────────────────────────────────────────────────────────────
+File    : e:\AggriGo\frontend\vite.config.js
+Problem : There is no `server.proxy` configured in vite.config.js.
+          The frontend calls `http://localhost:5000/api` directly.
+          If the backend CORS headers are misconfigured for any reason,
+          the browser will block the request with a CORS error.
+          A Vite proxy tunnels all /api calls through Vite's dev server,
+          completely bypassing CORS for local development.
+
+Recommended Addition to vite.config.js:
+          ─────────────────────────────────────────
+          server: {
+            port: 5173,
+            proxy: {
+              '/api': {
+                target: 'http://localhost:5000',
+                changeOrigin: true,
+              }
+            },
+            watch: {
+              ignored: ['**/backend/**', '**/data/**']
+            }
+          }
+          ─────────────────────────────────────────
+          If you add this proxy, change api.js baseURL to:
+              baseURL: import.meta.env.VITE_API_URL || '/api'
+          (relative URL, no hostname).
+
+────────────────────────────────────────────────────────────────────────────────
+[WARNING - W3] CLOUDINARY SDK v1 WITH MONGOOSE v8 — VERSION MISMATCH RISK
+────────────────────────────────────────────────────────────────────────────────
+File    : e:\AggriGo\backend\package.json  (Line 20)
+Current : "cloudinary": "^1.41.0"
+Problem : Cloudinary v1 is a legacy SDK. The current major version is v2+,
+          which has breaking API differences. If any other tool or tutorial
+          references the v2 API, uploads will silently fail.
+          Also, `multer@^1.4.5-lts.1` is a maintenance release — the LTS fork
+          is fine for now but Multer v2 will eventually break this.
+
+Fix     : Upgrade to cloudinary v2:
+          ─────────────────────────────────────────
+          npm install cloudinary@^2.0.0 --save
+          ─────────────────────────────────────────
+          Then update config/cloudinary.js and uploadController.js to use
+          the v2 API (cloudinary.uploader.upload() signature is the same,
+          but configuration import changes to: `import { v2 as cloudinary }`
+          which you already use — so only the package version needs bumping).
+
+================================================================================
+                    SECTION 2 — BACKEND INITIALIZATION & DATABASE
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+[CRITICAL - C4] CART ROUTE REGISTERED BEFORE MIDDLEWARE (CORS, JSON PARSER)
+────────────────────────────────────────────────────────────────────────────────
+File    : e:\AggriGo\backend\server.js  (Lines 16–65)
+Problem : This is the most dangerous ordering bug in the file.
+          The sequence is:
+
+          Line 16: const app = express();
+          Line 19: app.use('/api/cart', cartRoutes);   ← REGISTERED FIRST
+          ...
+          Line 54: app.use(cors({...}));               ← CORS set AFTER
+          Line 63: app.use(express.json());             ← JSON parser AFTER
+          Line 64: app.use(express.urlencoded(...));    ← Body parser AFTER
+          Line 65: app.use(cookieParser());             ← Cookie parser AFTER
+
+          Impact:
+          - ALL cart requests will have NO parsed req.body (it will be undefined)
+            because express.json() hasn't been applied yet.
+          - ALL cart requests will have NO cookies parsed.
+          - ALL cart requests will bypass CORS headers (no CORS header is added).
+          - This means cart POST/PUT will silently receive empty bodies,
+            causing all cart writes to fail or save empty/null data to MongoDB.
+
+Fix     : Move `app.use('/api/cart', cartRoutes)` to line 107 with all other
+          routes, AFTER all middleware is registered. The corrected order:
+
+          ─────────────────────────────────────────
+          import dotenv from 'dotenv';
+          dotenv.config(); // STEP 1 — load env first
+
+          import express from 'express';
+          // ... other imports
+
+          const app = express();
+
+          // STEP 2 — Trust proxy
+          app.set('trust proxy', 1);
+
+          // STEP 3 — CORS (before routes)
+          app.use(cors({ ... }));
+
+          // STEP 4 — Body parsers (before routes)
+          app.use(express.json());
+          app.use(express.urlencoded({ extended: true }));
+          app.use(cookieParser());
+
+          // STEP 5 — DB middleware (before routes)
+          app.use(async (req, res, next) => { await connectDB(); next(); });
+
+          // STEP 6 — Root route
+          app.get('/', ...);
+
+          // STEP 7 — ALL routes together
+          app.use('/api/auth', authRoutes);
+          app.use('/api/business', businessDataRoutes);
+          app.use('/api/upload', uploadRoutes);
+          app.use('/api/profile', profileRoutes);
+          app.use('/api/gallery', galleryRoutes);
+          app.use('/api/seller', sellerRoutes);
+          app.use('/api/products', productRoutes);
+          app.use('/api/cart', cartRoutes);  // ← NOW HERE
+
+          // STEP 8 — Error handler (last)
+          app.use((err, req, res, next) => { ... });
+          ─────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────────────────────
+[WARNING - W4] connectDB() IS CALLED TWICE ON EVERY REQUEST (PERFORMANCE)
+────────────────────────────────────────────────────────────────────────────────
+File    : e:\AggriGo\backend\server.js  (Lines 51 & 70)
+Problem : `connectDB()` is called once on startup (line 51) and then again
+          inside the middleware for EVERY incoming request (line 70). While the
+          `isConnected` guard short-circuits the second call quickly, this still
+          executes an extra async function + await on every request, adding
+          latency. The serverless pattern is designed for Vercel cold starts —
+          for local dev, it's unnecessary overhead.
+
+Fix     : The initial call on line 51 is sufficient for local development.
+          For Vercel, the middleware call is needed. The current design is
+          acceptable for a Vercel target, but adding a comment clarifying this
+          would prevent future confusion.
+
+────────────────────────────────────────────────────────────────────────────────
+[WARNING - W5] MONGODB URI CONTAINS PLAIN-TEXT CREDENTIALS IN .env
+────────────────────────────────────────────────────────────────────────────────
+File    : e:\AggriGo\backend\.env  (Line 5)
+Problem : The MongoDB Atlas connection string contains the database username
+          and password in clear text. While .env is gitignored, the credentials
+          are exposed in this analysis. These credentials should be rotated if
+          the .env file has ever been committed to git history.
+
+Fix     : Check git history: `git log --all --full-history -- .env`
+          If the file was ever committed, rotate the database password immediately
+          in MongoDB Atlas → Database Access → Edit User → Update Password.
+          Then update .env with the new password.
+
+================================================================================
+                    SECTION 3 — ROUTING & MIDDLEWARE (BACKEND)
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+[CRITICAL - C5] AUTH ROUTES MISSING: /logout, /verify-otp, /resend-otp,
+                /forgot-password, /reset-password ARE NOT REGISTERED
+────────────────────────────────────────────────────────────────────────────────
+File    : e:\AggriGo\backend\routes\auth.js
+Problem : The auth route file only registers 3 routes:
+              POST /login
+              POST /register
+              GET  /me
+
+          But authController.js exports and the frontend calls these additional
+          endpoints that are NEVER REGISTERED in routes/auth.js:
+              POST /api/auth/logout           → frontend calls this in AuthContext.jsx
+              POST /api/auth/verify-otp       → frontend VerifyOTPPage.jsx calls this
+              POST /api/auth/resend-otp       → frontend VerifyOTPPage.jsx calls this
+              POST /api/auth/forgot-password  → frontend ForgotPasswordPage.jsx calls this
+              PUT  /api/auth/reset-password/:token → frontend ResetPasswordPage.jsx
+
+          All of these will return 404, meaning:
+          - Logout does not work (cookie never cleared)
+          - OTP verification never works (new users cannot activate accounts)
+          - Password reset never works
+
+Fix     : Update e:\AggriGo\backend\routes\auth.js to:
+          ─────────────────────────────────────────
+          import express from 'express';
+          import {
+            login,
+            register,
+            getMe,
+            logout,
+            verifyOTP,
+            resendOTP,
+            forgotPassword,
+            resetPassword,
+          } from '../controllers/authController.js';
+          import { protect } from '../middleware/auth.js';
+
+          const router = express.Router();
+
+          // Public routes
+          router.post('/register', register);
+          router.post('/login', login);
+          router.post('/verify-otp', verifyOTP);
+          router.post('/resend-otp', resendOTP);
+          router.post('/forgot-password', forgotPassword);
+          router.put('/reset-password/:token', resetPassword);
+
+          // Protected routes
+          router.get('/me', protect, getMe);
+          router.post('/logout', protect, logout);
+
+          export default router;
+          ─────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────────────────────
+[CRITICAL - C6] USER SCHEMA IS MISSING FIELDS THAT authController.js WRITES TO
+────────────────────────────────────────────────────────────────────────────────
+File A  : e:\AggriGo\backend\models\User.js
+File B  : e:\AggriGo\backend\controllers\authController.js
+Problem : The authController.js writes/reads these fields on the User model:
+              user.isVerified        (line 144, 190) ← SCHEMA HAS: isEmailVerified
+              user.otpHash           (lines 83, 134, 152, 176, 191)
+              user.otpExpiresAt      (lines 84, 134, 152, 160, 192)
+              user.otpAttempts       (lines 85, 134, 168, 180, 193)
+              user.resetPasswordExpire (lines 444-446, 497, 522)
+
+          But the User schema (User.js) defines:
+              isEmailVerified (NOT isVerified)
+              otp             (NOT otpHash)
+              otpExpires      (NOT otpExpiresAt)
+              [NO otpAttempts field]
+              resetPasswordExpires (NOT resetPasswordExpire)
+
+          This means:
+          - OTP hashes are written to an undefined Mongoose path → they are
+            silently discarded. The OTP is NEVER actually saved, so every
+            verification attempt will fail with "No OTP found."
+          - `user.isVerified` check always returns undefined (falsy), which
+            bypasses email verification (or may cause unexpected behavior).
+          - `resetPasswordExpire` mismatch means password reset tokens are
+            queried but never found, breaking the reset flow.
+
+Fix     : Choose ONE consistent naming convention. The recommended fix is to
+          update User.js schema to match what authController.js expects:
+
+          ─────────────────────────────────────────
+          // In User.js, replace the auth helpers section:
+          isVerified: { type: Boolean, default: false },   // was isEmailVerified
+          otpHash: { type: String, select: false },         // was otp
+          otpExpiresAt: { type: Date, select: false },      // was otpExpires
+          otpAttempts: { type: Number, default: 0, select: false }, // ADD THIS
+          resetPasswordToken: { type: String, select: false },
+          resetPasswordExpire: { type: Date, select: false }, // was resetPasswordExpires
+          ─────────────────────────────────────────
+
+          ALSO add the missing getResetPasswordToken() method to User.js
+          (authController.js line 424 calls `user.getResetPasswordToken()`
+          but this method does not exist in User.js — it will throw:
+          "TypeError: user.getResetPasswordToken is not a function"):
+
+          ─────────────────────────────────────────
+          import crypto from 'crypto';
+          
+          UserSchema.methods.getResetPasswordToken = function() {
+            // Generate plain token
+            const resetToken = crypto.randomBytes(20).toString('hex');
+            // Hash and store it
+            this.resetPasswordToken = crypto
+              .createHash('sha256')
+              .update(resetToken)
+              .digest('hex');
+            // Set expiration (10 minutes)
+            this.resetPasswordExpire = Date.now() + 10 * 60 * 1000;
+            return resetToken;
+          };
+          ─────────────────────────────────────────
+          NOTE: If you use a hashed token in the schema, the resetPassword
+          controller must also hash the incoming token before comparing.
+          Review both files for consistency.
+
+────────────────────────────────────────────────────────────────────────────────
+[CRITICAL - C7] authController.js sendTokenResponse REFERENCES NON-EXISTENT FIELD
+────────────────────────────────────────────────────────────────────────────────
+File    : e:\AggriGo\backend\controllers\authController.js (Lines 31–39)
+Problem : The response body includes:
+              profilePictures: user.profilePictures || []
+          But the User schema (User.js line 47) defines:
+              profilePicture: { type: String, default: '' }   ← singular, String
+          The controller references `profilePictures` (plural, array)
+          which does not exist. This will always resolve to `[]` due to the
+          fallback, masking the bug, but profile picture data will never be
+          correctly sent to the frontend.
+
+          The same error is in getMe() at line 361.
+
+Fix     : Change both occurrences in authController.js:
+          ─────────────────────────────────────────
+          // Line 38 and line 361 — change:
+          profilePictures: user.profilePictures || []
+          // TO:
+          profilePicture: user.profilePicture || ''
+          ─────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────────────────────
+[WARNING - W6] CART ROUTES HAVE NO AUTHENTICATION PROTECTION
+────────────────────────────────────────────────────────────────────────────────
+File    : e:\AggriGo\backend\routes\cart.js
+Problem : All cart endpoints (GET, POST, PUT, DELETE) accept a `userId` from
+          the URL/request body with no authentication check. Any user can read,
+          modify, or clear ANOTHER user's cart simply by knowing their MongoDB
+          ObjectId.
+
+Fix     : Add the `protect` middleware and validate that the requesting user
+          matches the userId in the route param:
+          ─────────────────────────────────────────
+          import { protect } from '../middleware/auth.js';
+
+          router.get('/:userId', protect, (req, res) => {
+            if (req.user._id.toString() !== req.params.userId) {
+              return res.status(403).json({ success: false, message: 'Forbidden' });
+            }
+            // ... rest of handler
+          });
+          ─────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────────────────────
+[WARNING - W7] PRODUCTS ROUTE HAS AN AMBIGUOUS WILDCARD PARAMETER ORDER
+────────────────────────────────────────────────────────────────────────────────
+File    : e:\AggriGo\backend\routes\products.js (Lines 22–24)
+Problem : The admin routes use patterns like:
+              GET  /admin/pending      (line 22)
+              PATCH /:id/approve       (line 23)
+              PATCH /:id/reject        (line 24)
+              PATCH /:id/featured      (line 27)
+          The `/:id` routes are registered BEFORE any potential `/admin/*` sub-
+          routes could cause a conflict. This is currently OK because `/admin/
+          pending` doesn't match `/:id/approve`. However, if a product ID
+          happened to be literally "admin", it would match the wrong route.
+          More importantly, `GET /admin/pending` is mixed with Seller routes
+          without a sub-router, making the file hard to maintain.
+
+Fix (Recommended refactor):
+          ─────────────────────────────────────────
+          // Specific static segments first, then dynamic :id params
+          router.get('/admin/pending', protect, requireAdmin, getPendingProducts);
+
+          // Then parameterized routes
+          router.post('/', protect, requireSeller, createProduct);
+          router.get('/my-products', protect, requireSeller, getMyProducts);
+          router.put('/:id', protect, requireSeller, requireProductOwner, updateProduct);
+          // etc.
+          ─────────────────────────────────────────
+
+================================================================================
+                    SECTION 4 — FRONTEND SETUP & ROUTING
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+[CRITICAL - C8] AuthProvider IS DOUBLE-MOUNTED — CONTEXT COLLISION
+────────────────────────────────────────────────────────────────────────────────
+File A  : e:\AggriGo\frontend\src\main.jsx   (Lines 5, 9)
+File B  : e:\AggriGo\frontend\src\App.jsx    (Lines 2, 40)
+
+Problem : `AuthProvider` wraps `<App />` in main.jsx:
+              <AuthProvider>
+                <App />
+              </AuthProvider>
+
+          AND inside App.jsx, `AuthProvider` is imported again and wraps
+          the router children:
+              <AuthProvider>
+                <FormProvider>
+                  <Routes> ...
+
+          This means every component inside App is wrapped by TWO separate
+          AuthProvider instances. The inner one creates a FRESH context with:
+              user = null
+              loading = true
+              isAuthenticated = false
+          This inner context shadows the outer one, so ALL components that call
+          `useAuth()` read from the inner context — which starts loading=true
+          and never sets the user because `checkAuth` fetches from the API but
+          the outer context's fetched user is invisible to the inner context.
+
+          Impact: PrivateRoute, AdminRoute, SellerRoute all read `loading=true`
+          forever (or until the inner checkAuth completes), potentially causing
+          infinite loading spinners or double API calls on every page load.
+
+Fix     : Remove the `AuthProvider` from EITHER main.jsx OR App.jsx.
+          The recommended pattern is to keep providers only in main.jsx
+          and remove them from App.jsx:
+
+          ─── In main.jsx (KEEP as-is):
+          ─────────────────────────────────────────
+          createRoot(document.getElementById('root')).render(
+            <StrictMode>
+              <AuthProvider>
+                <App />
+              </AuthProvider>
+            </StrictMode>
+          );
+          ─────────────────────────────────────────
+
+          ─── In App.jsx (REMOVE AuthProvider):
+          ─────────────────────────────────────────
+          function App() {
+            return (
+              <LanguageProvider>
+                <Router>
+                  {/* AuthProvider removed — provided by main.jsx */}
+                  <FormProvider>
+                    <Routes>
+                      ...
+                    </Routes>
+                  </FormProvider>
+                </Router>
+              </LanguageProvider>
+            );
+          }
+          ─────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────────────────────
+[CRITICAL - C9] ADMIN SUB-ROUTES ARE OUTSIDE THE /manager PARENT — THEY
+                RENDER WITHOUT AdminLayout AND WITHOUT AUTH PROTECTION
+────────────────────────────────────────────────────────────────────────────────
+File    : e:\AggriGo\frontend\src\App.jsx  (Lines 103–104)
+Problem : These two routes are NOT nested inside the /manager parent route:
+              <Route path="sellers"  element={<AdminSellers />} />
+              <Route path="products" element={<AdminProducts />} />
+
+          Issues:
+          1. They have NO leading slash and are NOT nested — in React Router v7, 
+             relative paths outside a parent `<Route>` resolve relative to the
+             root, making them unreachable (would need exact path match from root).
+          2. They are NOT wrapped in <AdminRoute> — any user (even unauthenticated)
+             can access the admin products/sellers pages.
+          3. They don't use <AdminLayout>, so the admin sidebar won't render.
+
+Fix     : Nest them inside the /manager parent route with proper paths:
+          ─────────────────────────────────────────
+          <Route
+            path="/manager"
+            element={
+              <AdminRoute>
+                <AdminLayout />
+              </AdminRoute>
+            }
+          >
+            <Route index element={<Navigate to="analytics" replace />} />
+            <Route path="analytics" element={<AnalyticsDashboard />} />
+            <Route path="directory" element={<BusinessDirectory />} />
+            <Route path="directory/:id" element={<BusinessDetail />} />
+            <Route path="sellers" element={<AdminSellers />} />     {/* ADD HERE */}
+            <Route path="products" element={<AdminProducts />} />   {/* ADD HERE */}
+          </Route>
+          ─────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────────────────────
+[WARNING - W8] SellerRoute DOES NOT HANDLE 'loading' STATE PROPERLY
+────────────────────────────────────────────────────────────────────────────────
+File    : e:\AggriGo\frontend\src\components\SellerRoute.jsx  (Line 7)
+Problem : SellerRoute renders:
+              if (loading) return <div>Loading...</div>;
+          While PrivateRoute and AdminRoute render a full-screen spinner.
+          The plain <div> without styling causes a layout flash.
+          More critically, if `loading` is true and `user` is null, it shows
+          the plain "Loading..." div — but if `loading` then completes and
+          `user` is still null, it redirects. This is functionally OK but
+          the UX differs between routes inconsistently.
+
+Fix     : Use the same loading UI as AdminRoute:
+          ─────────────────────────────────────────
+          if (loading) return (
+            <div className="min-h-screen flex items-center justify-center">
+              <div className="w-12 h-12 border-4 border-emerald-200 border-t-emerald-600 rounded-full animate-spin" />
+            </div>
+          );
+          ─────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────────────────────
+[INFO - I1] AdminRoute HAS A LEFTOVER console.log IN PRODUCTION CODE
+────────────────────────────────────────────────────────────────────────────────
+File    : e:\AggriGo\frontend\src\components\AdminRoute.jsx  (Line 15)
+Problem : `console.log('USER DATA:', user);` will log sensitive user data
+          (email, roles, sellerStatus) to the browser console in production.
+          This is a minor security/professionalism issue.
+
+Fix     : Remove or replace with a conditional debug guard:
+          ─────────────────────────────────────────
+          // Remove this line:
+          console.log('USER DATA:', user);
+          ─────────────────────────────────────────
+
+================================================================================
+                    SECTION 5 — FRONTEND-BACKEND INTEGRATION
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+[CRITICAL - C10] FormContext FIRES API CALL ON MOUNT FOR UNAUTHENTICATED USERS
+────────────────────────────────────────────────────────────────────────────────
+File    : e:\AggriGo\frontend\src\context\FormContext.jsx  (Lines 55–57)
+Problem : FormContext's useEffect calls `loadExistingData()` on mount:
+              useEffect(() => { loadExistingData(); }, []);
+
+          `loadExistingData()` calls `GET /api/business` which is a protected
+          route requiring an auth cookie. When a user is NOT logged in (visiting
+          the homepage for the first time), this request fires and gets a 401.
+          The 401 triggers the Axios interceptor in api.js which dispatches
+          `auth-token-removed` event, which then updates AuthContext to set
+          user=null and isAuthenticated=false — even though there was no valid
+          session to begin with. This creates unnecessary noise and can cause
+          race conditions with AuthContext's own `checkAuth()` call.
+
+Fix     : Gate the loadExistingData call behind authentication status.
+          Since FormContext doesn't import AuthContext (avoid circular deps),
+          use the window event approach or simply swallow 401s silently:
+          ─────────────────────────────────────────
+          const loadExistingData = async () => {
+            try {
+              setLoading(true);
+              const response = await api.get('/business');
+              if (response.data.success && response.data.data) {
+                setFormData({ ...INITIAL_FORM_STATE, ...normalizeLoadedData(response.data.data), businessDataId: response.data.data._id });
+              } else {
+                setFormData(INITIAL_FORM_STATE);
+              }
+            } catch (error) {
+              // Silently ignore 401 — user is not authenticated yet
+              if (error.response?.status !== 401) {
+                console.error('Error loading existing data:', error);
+              }
+              setFormData(INITIAL_FORM_STATE);
+            } finally {
+              setLoading(false);
+            }
+          };
+          ─────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────────────────────
+[WARNING - W9] NO FRONTEND .env FILE — VITE_API_URL WILL BE undefined IN PROD
+────────────────────────────────────────────────────────────────────────────────
+(Already covered in C1, but the integration impact is noted here)
+In production (Vercel), VITE_API_URL must be set as an environment variable
+in the Vercel dashboard (not a .env file). Confirm this is configured before
+deploying.
+
+────────────────────────────────────────────────────────────────────────────────
+[WARNING - W10] api.js TRUSTS HttpOnly COOKIE BUT BACKEND HAS COOKIE BUG IN DEV
+────────────────────────────────────────────────────────────────────────────────
+File A  : e:\AggriGo\frontend\src\utils\api.js (line 5) — withCredentials: true
+File B  : e:\AggriGo\backend\controllers\authController.js (lines 20-21)
+Problem : The api.js intentionally removes the Bearer token and relies 100%
+          on the HttpOnly cookie. This is the correct XSS-safe design.
+          However, as noted in W1, the cookie is set with:
+              secure: true   (when NODE_ENV=production)
+              sameSite: 'none'
+          On localhost with HTTP, browsers reject cookies with secure:true.
+          So in local dev with NODE_ENV=production (as currently set in .env),
+          the login response sets a cookie the browser refuses, resulting in
+          every protected route returning 401 immediately after "successful" login.
+
+Fix     : Fix NODE_ENV as described in W1. Once set to 'development', the
+          cookie will use secure:false + sameSite:'lax', which works over HTTP.
+
+================================================================================
+                    SECTION 6 — SUMMARY CHECKLIST
+================================================================================
+
+CRITICAL FIXES (app will not run correctly without these):
+  [C1]  Create frontend/.env with VITE_API_URL
+  [C2]  Move dotenv.config() to top of server.js
+  [C3]  Replace JWT_SECRET placeholder with a real secret
+  [C4]  Move cart route registration AFTER middleware setup in server.js
+  [C5]  Register missing auth routes (logout, verify-otp, resend-otp, etc.)
+  [C6]  Fix User.js schema field naming mismatches + add getResetPasswordToken()
+  [C7]  Fix profilePictures → profilePicture field name in authController.js
+  [C8]  Remove duplicate AuthProvider (remove from App.jsx, keep in main.jsx)
+  [C9]  Move AdminSellers/AdminProducts into the /manager nested route + protect them
+  [C10] Suppress 401 errors in FormContext.loadExistingData for unauthenticated users
+
+WARNINGS (fix for security &  stability):
+  [W1]  Set NODE_ENV=development in backend .env for local dev
+  [W2]  Add Vite dev server proxy to avoid CORS issues
+  [W3]  Upgrade cloudinary to v2
+  [W4]  Review double connectDB() call pattern
+  [W5]  Rotate MongoDB credentials if .env was ever committed to git
+  [W6]  Add auth protection to cart routes
+  [W7]  Refactor products routes for clarity
+  [W8]  Fix SellerRoute loading spinner UI
+  [W9]  Configure VITE_API_URL on Vercel dashboard for production
+  [W10] Ensure NODE_ENV=development for local dev (HttpOnly cookie fix)
+
+INFO (minor/cleanup):
+  [I1]  Remove console.log('USER DATA:', user) from AdminRoute.jsx
+
+================================================================================
+                    SECTION 7 — PRIORITY ORDER OF FIXES
+================================================================================
+
+Apply fixes in this recommended order to get the app running:
+
+  STEP 1: backend/.env → Set NODE_ENV=development (W1 + fixes W10)
+  STEP 2: backend/server.js → Move dotenv.config() to top (C2)
+  STEP 3: backend/server.js → Fix middleware/route ordering (C4)
+  STEP 4: backend/routes/auth.js → Add missing route registrations (C5)
+  STEP 5: backend/models/User.js → Fix field names + add getResetPasswordToken (C6)
+  STEP 6: backend/controllers/authController.js → Fix profilePictures field (C7)
+  STEP 7: frontend/.env → Create with VITE_API_URL=http://localhost:5000/api (C1)
+  STEP 8: frontend/main.jsx OR App.jsx → Remove duplicate AuthProvider (C8)
+  STEP 9: frontend/App.jsx → Fix AdminSellers/AdminProducts route nesting (C9)
+  STEP 10: frontend/FormContext.jsx → Suppress 401 in loadExistingData (C10)
+
+After these 10 steps, the application should start and authenticate correctly.
+Then address the remaining warnings for security hardening.
+
+================================================================================
+                              END OF REPORT
+================================================================================

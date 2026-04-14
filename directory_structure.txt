@@ -1,0 +1,114 @@
+# AggriGo Project Structure - Deep Dive
+
+## Root Directory (`e:\AggriGo`)
+- `README.md`: Main project documentation.
+- `package.json` / `package-lock.json`: Project-level or monorepo dependency mappings.
+
+---
+
+## Backend (`e:\AggriGo\backend`)
+The backend is an Express.js server, communicating with a MongoDB database using Mongoose.
+
+### Core Configuration Files
+- `server.js`: The heart of the backend application. Initializes Express, sets up globals, configures CORS, handles initial routing, and starts the listener.
+- `makeAdmin.js`: CLI script for database administration. Used to override roles and grant Admin privileges directly.
+- `.env`: Stores sensitive environment variables (JWT secrets, database URI, Cloudinary keys).
+- `vercel.json`: Configurations specifying how Vercel should deploy and serve the backend API.
+- `nodemon.json`: Configures auto-restarting behavior for the backend during local development.
+- `package.json`: Backend dependencies like 'express', 'mongoose', 'jsonwebtoken', 'multer'.
+
+### `/config`
+- `cloudinary.js`: Cloudinary SDK initialization. Essential for providing remote media storage for user uploads (profile images, product photos).
+
+### `/models` (Mongoose Schemas)
+- `User.js`: Schema defining base properties for individuals signing up (email, encrypted password, role such as Admin/Seller/Buyer).
+- `Product.js`: Schema defining fields for products being sold (title, price, stock, category, reference to the Seller).
+- `Cart.js`: Schema defining the state of a user's shopping cart, mapping user IDs to an array of product IDs and quantities.
+- `BusinessData.js`: Schema designed for farmers or business accounts containing extensive metadata (farmland scale, crop types, legal agreements).
+
+### `/controllers` (Business Logic)
+- `authController.js`: Manages user lifecycles including signup validation, password hashing, OTP generation/verification for emails, and issuing JWT tokens upon login.
+- `businessDataController.js`: Receives form submissions from the multi-step React wizard and parses them into the BusinessData database models.
+- `cartController.js`: Adds items to the cart, calculates totals, and removes items.
+- `galleryController.js`: Enables users to build portfolios/visual galleries; handles endpoints tying uploaded image links to the specific user's portfolio.
+- `productController.js`: Secure operations where verified sellers can create, update, or delete their inventory listings.
+- `profileController.js`: Operations allowing signed-in users to fetch their profile details or submit edits strictly to their own accounts.
+- `publicProductController.js`: Handles unauthenticated GET requests, pulling global product listings used on the public shop/directory pages.
+- `sellerController.js`: Provides endpoints enabling admins and users to request Seller status or view active sellers.
+- `uploadController.js`: Specialized controller that takes multipart form-data streams, uploads them via Cloudinary/multer, and responds with the secure hosting URL.
+
+### `/routes` (Endpoint Routing)
+Translates HTTP request types to their respectful controllers.
+- `auth.js` -> handles `/api/auth`
+- `businessData.js` -> handles `/api/business`
+- `cart.js` -> handles `/api/cart`
+...and so on for `gallery.js`, `products.js`, `profile.js`, `seller.js`, `upload.js`.
+
+### `/middleware` (Request Interceptors)
+- `auth.js`: Verifies the presence and validity of a JWT token in the Authorization header before permitting access to protected routes. Extracts `req.user`.
+- `upload.js`: Wraps Multer for disk/memory storage buffering, strictly checking file types before passing memory buffers to Cloudinary wrappers.
+
+### `/utils`
+- `emailService.js`: Nodemailer wrapper. Compiles headers/body to send authentication OTP codes or welcome emails.
+- `pdfGenerator.js`: Converts simple JSON string payload data into a readable PDF document.
+- `agreementPdfGenerator.js`: Uses templates to dynamically fill and create formalized legal/business agreement PDFs when users apply for a higher seller status.
+
+### `/data`
+- `bangladesh-locations.json`: Hardcoded JSON tree representing districts/upazilas for address validations.
+
+---
+
+## Frontend (`e:\AggriGo\frontend`)
+The frontend is a Vite + React Single Page Application utilizing Tailwind CSS.
+
+### Core Build & Configuration Files
+- `index.html`: Base entry point where `<div id="root"></div>` resides.
+- `main.jsx`: Uses `ReactDOM.createRoot` and provides core wrappers (Theme, Context, Router) over `<App />`.
+- `App.jsx`: Organizes the primary layout grid and declares fundamental routing paths using `react-router-dom`.
+- `App.css` / `index.css`: Houses custom global CSS classes and Tailwind injections (`@tailwind base`, etc.).
+- `vite.config.js`: Specifying port numbers, proxy rules, or React plugin bindings for Vite.
+- `tailwind.config.js`: Outlines Tailwind theme variables, custom color palettes, and standardizes breakpoint configurations.
+- `postcss.config.js` / `eslint.config.js`: Rulesets for styling processors and code linting.
+
+### `/src/components` (Reusable View Fragments)
+- **`layout/AdminLayout.jsx`**: Provides standard sidebars and headers universally applied when users enter `/admin` routes.
+- **`wizard/Step1...` to `Step6...`**: Complex multi-step wizard logic separated into modular components. Collects business entity metadata sequentially.
+- **`Navbar.jsx` / `Footer.jsx`**: Top and bottom anchoring UI components appearing on nearly every public page.
+- **`ImageCard.jsx` / `ProfilePicture.jsx` / `VisualGallery.jsx`**: Presentational UI components designed to uniformly format media.
+- **`LanguageSwitcher.jsx`**: Triggers locale state changes (English <> Bengali).
+- **`AdminRoute.jsx` / `PrivateRoute.jsx` / `SellerRoute.jsx`**: Wrap `<Route>` declarations. They check `AuthContext` to ensure the user is logged in, or appropriately redirect to `/login` if a standard user tries to access a Seller mapping.
+
+### `/src/pages` (Routable Views)
+- **Core Pages**: `HomePage.jsx` (Landing Page), `AboutPage.jsx`, `PrivacyPage.jsx`, `TermsPage.jsx`.
+- **Authentication Pages**: Managed views for signing in, registering, resetting passwords, and validating OTPs.
+- **Commerce Pages**: 
+  - `ShopPage.jsx`: The main grid displaying products.
+  - `ProductDetail.jsx`: Isolated view for a single item.
+  - `CartPage.jsx` & `CheckoutPage.jsx`: E-commerce purchasing flows.
+- **Dashboard Pages**: 
+  - `Dashboard.jsx`: Base hub for standard logged-in users.
+  - `AnalyticsDashboard.jsx`: Data visualization for metrics.
+  - `FormWizard.jsx`: The shell uniting the Wizard Step components.
+- **Business/Sellers Pages**: 
+  - `BusinessDirectory.jsx` / `BusinessDetail.jsx`: Lists active companies.
+  - `AddEditProduct.jsx`: Form interfaces for sellers to modify stock listings.
+- **Admin Pages**: `AdminProducts.jsx`, `AdminSellers.jsx` to list and modify global DB tables.
+
+### `/src/context` (React Global State)
+- `AuthContext.jsx`: Retains a persistent global listener providing user states such as `currentUser` and `login`/`logout` functions.
+- `FormContext.jsx`: Ensures data typed into Wizard Step 1 persists if a user moves to Step 3.
+- `LanguageContext.jsx`: Triggers application-wide string redraws matching the selected language key.
+
+### `/src/utils`
+- `api.js`: Exports a globally configured Axios instance intercepting all requests to automatically attach the Auth JWT Header if one is present in localStorage.
+- `formSchemas.js`: Contains rule dictionaries (ex. `password must be 8 chars`) preventing bad frontend submissions.
+- `formValidation.js`: Functions handling form visual errors gracefully alerting the user locally.
+
+### `/src/i18n` (Internationalization Data)
+- `en.json`: Maps arbitrary component keys to readable English values (e.g. `{"nav.home": "Home"}`).
+- `bn.json`: Maps component keys to Bengali values allowing seamless toggling.
+
+### `/src/data` & `/src/assets`
+- `bangladesh-locations.json`: Static reference populating UI drop-down selectors rapidly.
+- `formConstants.js`: Fixed list entries.
+- `/assets`: Essential static media bundled tightly by Vite (`banner.png`, placeholders, SVGs).

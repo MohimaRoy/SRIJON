@@ -1,0 +1,836 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "dashboard": "Dashboard",
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Sign In",
+    "pages": "Pages",
+    "shop": "Shop",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy"
+  },
+  "pages": {
+    "terms": {
+      "subtitle": "Please read these terms carefully before using SRIJON's platform.",
+      
+      "intro": "By accessing or using SRIJON's platform, you agree to be bound by these Terms and Conditions. These terms govern your use of our services and outline the rights and responsibilities of both SRIJON and its users.",
+      "sections": {
+        "s1_title": "1. Introduction",
+        "s1_content": "Welcome to SRIJON. We are an online marketplace and these are the terms and conditions governing your access and use of SRIJON along with its related sub-domains, sites, mobile app, services and tools (the \"Site\"). By using the Site, you hereby accept these terms and conditions and represent that you agree to comply with these terms and conditions (the \"User Agreement\"). This User Agreement is deemed effective upon your use of the Site which signifies your acceptance of these terms.\n\nThe Site reserves the right to change, modify, add, or remove portions of these Terms and Conditions at any time without any prior notification. Changes will be effective when posted on the Site with no other notice provided. Your continued use of the Site following the posting of changes constitutes your acceptance of those changes.",
+        "s2_title": "2. Your Account",
+        "s2_content": "To access certain services offered by the platform, we may require that you create an account with us or provide personal information to complete the creation of an account. We may at any time in our sole and absolute discretion, invalidate the username and/or password without giving any reason or prior notice.\n\nYou are responsible for maintaining the confidentiality of your user identification, password, account details and related private information. You agree to accept this responsibility and ensure your account and its related details are maintained securely at all times. You should inform us immediately if you have any reason to believe that your password has become known to anyone else, or if the password is being, or is likely to be, used in an unauthorized manner.",
+        "s3_title": "3. Privacy",
+        "s3_content": "Please review our Privacy Policy, which also governs your visit to the Site. The personal information / data provided to us by you or your use of the Site will be treated as strictly confidential, in accordance with the Privacy Policy and applicable laws and regulations. If you object to your information being transferred or used in the manner specified in the Privacy Policy, please do not use the Site.",
+        "s4_title": "4. License to Access the Site",
+        "s4_content": "We require that by accessing the Site, you confirm that you can form legally binding contracts and therefore you confirm that you are at least 18 years of age or are accessing the Site under the supervision of a parent or legal guardian. We grant you a non-transferable, revocable and non-exclusive license to use the Site for the purposes of shopping for personal items and services as listed to be sold on the Site. Commercial use or use on behalf of any third party is prohibited, except as explicitly permitted by us in advance.\n\nThis Site or any portion of it (including but not limited to any copyrighted material, trademarks, or other proprietary information) may not be reproduced, duplicated, copied, sold, resold, visited, distributed or otherwise exploited for any commercial purpose without express written consent by us.",
+        "s5_title": "5. Your Conduct",
+        "s5_content": "You must not use the website in any way that causes, or is likely to cause, the Site or access to it to be interrupted, damaged or impaired in any way. You are strictly prohibited from using the Site:\n\n• For fraudulent purposes, or in connection with a criminal offense or other unlawful activity\n• To send, use or reuse any material that does not belong to you or is illegal, offensive, deceptive, misleading, abusive, or otherwise injurious to third parties\n• To cause annoyance, inconvenience or needless anxiety\n• For any purposes other than what is intended by us",
+        "s6_title": "6. Conditions of Sale",
+        "s6_content": "Your order is a legal offer to the seller to buy the product or service displayed on our Site. The acceptance of your order is considered confirmed when the product is dispatched to you.\n\nAll prices are listed in Bangladeshi Taka (BDT). Items in your Shopping Cart will always reflect the most recent price displayed on the item's product detail page. We reserve the right to refuse or cancel any order. In the event that an item is mispriced, we may, at our own discretion, either contact you for instructions or cancel your order and notify you of such cancellation.",
+        "s7_title": "7. Disclaimer & Indemnity",
+        "s7_content": "You acknowledge and undertake that you are accessing the services on the Site and transacting at your own risk. SRIJON shall neither be liable nor responsible for any actions or inactions of sellers nor any breach of conditions, representations or warranties by the sellers or manufacturers of the products.\n\nYou shall indemnify and hold harmless SRIJON, its subsidiaries, affiliates and their respective officers, directors, agents and employees, from any claim or demand, or actions including reasonable attorney's fees, made by any third party or penalty imposed due to or arising out of your breach of these Terms and Conditions.",
+        "s8_title": "8. Trademarks and Copyrights",
+        "s8_content": "SRIJON and the SRIJON logo and other marks indicated on our Site are trademarks or registered trademarks. Our graphics, logos, page headers, button icons, scripts and service names are the trademarks or trade dress and may not be used in connection with any product or service that does not belong to us.\n\nAll intellectual property rights, whether registered or unregistered, in the Site, information content on the Site and all the website design, including but not limited to text, graphics, software, photos, video, music, sound, and their selection and arrangement shall remain our property.",
+        "s9_title": "9. Governing Law & Contact",
+        "s9_content": "These terms and conditions are governed by and construed in accordance with the laws of The People's Republic of Bangladesh. You agree that the courts, tribunals and/or quasi-judicial bodies located in Dhaka, Bangladesh shall have the exclusive jurisdiction on any dispute arising inside Bangladesh under this Agreement.\n\nFor any questions about these Terms and Conditions, please contact us:\n• Email: support@srijon.com\n• Phone: +880 1611652888\n• Address: Dhaka, Bangladesh"
+      }
+    },
+    "privacy": {
+      "subtitle": "Your privacy matters to us. Learn how SRIJON collects, uses, and protects your data.",
+      
+      "intro": "SRIJON is committed to protecting your personal data. This Privacy Policy explains how we collect, use, share, and protect information in connection with your use of our platform and services.",
+      "sections": {
+        "s1_title": "1. Introduction",
+        "s1_content": "SRIJON understands that our users care about their personal data and how it is collected, used, shared, protected and cared for. We are committed to handling your personal data in accordance with the applicable laws when you use any of the features and functions available on our Platform or Services.\n\nPlease read this Privacy Policy carefully. By clicking \"Sign Up\", \"Login\", or \"I Agree to SRIJON's Privacy Policy\", you acknowledge that you have read and understood the terms of this Privacy Policy and that you have agreed and consented to the collection, use, disclosure, storage, transfer and/or processing of your personal data as described herein.",
+        "s2_title": "2. Personal Data We Collect",
+        "s2_content": "Depending on your use of our Platform, you may be asked to provide us with certain information. The personal data that you may provide includes:\n\n• Identity and Profile Data: your name, date of birth, gender, username and password, email address, telephone number, your interests, and any personal data in any photographs or videos that you upload onto our Platform.\n\n• Account and Transaction Data: your credit card details, bank account details, bank statements, delivery/billing address, payments and orders to and from you.\n\n• Usage Data: information about how and when you use the Platform, products and Services or view any content on the Platform.\n\n• Marketing and Communications Data: your interests, survey responses, preferences in receiving marketing materials from us and your communication preferences.\n\n• Location data: such as when you check for deals near you or the delivery/pick-up status of orders.",
+        "s3_title": "3. How We Use Your Data",
+        "s3_content": "We use and disclose personal data for the following purposes:\n\n• To facilitate your use of the Services or access to the Platform.\n• To administer the online account that you may have set up with us.\n• To conduct analytics, research, business and development.\n• To better understand user experience with the Services and the Platform.\n• To improve the layout or content of the pages of the Platform and customize them for users.\n• To ascertain your identity in connection with fraud detection purposes.\n• To process any complaints, feedback, enforcement action and take-down requests.\n• To produce statistics and research for internal and statutory reporting.\n• To prevent or investigate any actual or suspected violations of our Terms of Use or Privacy Policy.\n• To comply with legal and regulatory requirements.",
+        "s4_title": "4. Who We Share Your Data With",
+        "s4_content": "We may share your personal data with third parties for the above-mentioned purposes. These third parties may include:\n\n• Service providers in areas such as payment services, logistics and shipping, marketing, data analytics, customer service, and cloud computing or other hosting service providers.\n\n• Courts, tribunals, law enforcement agencies, governmental or regulatory authorities where we believe it is necessary to comply with applicable laws or to exercise, establish or defend our legal rights.\n\nIn disclosing your personal data to them, we endeavor to ensure that the third parties keep your personal data secure from unauthorized access, collection, use, disclosure, processing or similar risks.",
+        "s5_title": "5. Cookies and Tracking",
+        "s5_content": "We or our authorized service providers may use cookies, web beacons, and other similar technologies in connection with your use of the Services or access of the Platform.\n\nWhen you visit the Platform, our company servers will automatically record data that your browser sends, such as IP addresses, date and time of access to the Platform, device type, unique device identification numbers, browser type, and broad geographic location.\n\nYou may be able to manage and delete cookies through your browser or device settings. However, certain cookies are required to enable core functionality, so please note that changing and deleting cookies may affect the functionality available on the Platform.",
+        "s6_title": "6. Security of Your Data",
+        "s6_content": "To safeguard your personal data from unauthorized access, we have introduced appropriate administrative, physical and technical measures such as:\n\n• Restricting access to personal data to individuals who require access.\n• Maintaining technology products to prevent unauthorized computer access.\n• Using TLS 1.2 (Transport Layer Security) encryption technology when processing your financial details.\n• Implementing other security measures as required by applicable law.\n\nYou should be aware, however, that no method of transmission over the Internet or method of electronic storage is completely secure. While security cannot be guaranteed, we strive to protect the security of your information.",
+        "s7_title": "7. Retention of Data",
+        "s7_content": "We will only retain your personal data for as long as we are either required or permitted to by law or as relevant for the purposes for which it was collected.\n\nWe will cease to retain your personal data by securely disposing of the same, or remove the means by which the data can be associated with you through anonymization, as soon as it is reasonable to assume that such retention no longer serves the purposes for which the personal data was collected.",
+        "s8_title": "8. Your Rights & Contact",
+        "s8_content": "You may communicate the withdrawal of your consent to the continued use, disclosure, storing and/or processing of your personal data by contacting us using the contact details below.\n\nYou may request information about your personal data which we have collected, or enquire about the ways in which your personal data may have been used, disclosed, stored or processed by us via the personal account information setting on our Platform.\n\nYou may unsubscribe from receiving marketing information at any time in our mobile application settings or by using the unsubscribe function within the electronic marketing material.\n\nFor any questions about this Privacy Policy, please contact us:\n• Email: privacy@srijon.com\n• Phone: +880 1611652888\n• Address: Dhaka, Bangladesh"
+      }
+    },
+    "shop": {
+      "heroTitle": "SRIJON Shop — Coming Soon!",
+      "heroSubtitle": "Our marketplace is getting ready to launch. Be the first to explore handcrafted products from Bangladesh's finest entrepreneurs.",
+      "comingSoonBadge": "Grand Opening on 4th April 2025",
+      "eventTitle": "SRIJON Entrepreneurs' Grand Fair 2025",
+      "eventDesc": "We are thrilled to announce that SRIJON's first official shop will open its doors on 4th April 2025! To celebrate this milestone, we are organizing a grand fair at Bashundhara Convention Hall, Dhaka — bringing together all registered entrepreneurs under one roof. This landmark event will showcase the best handcrafted, artisanal, and locally produced goods from across Bangladesh.",
+      "dateLabel": "Opening Date",
+      "dateValue": "4th April 2025",
+      "timeLabel": "Event Duration",
+      "timeValue": "9:00 AM – 6:00 PM",
+      "venueLabel": "Venue",
+      "venueValue": "Bashundhara Convention Hall, Dhaka",
+      "whoLabel": "Who Can Attend",
+      "whoValue": "All registered SRIJON entrepreneurs & buyers",
+      "highlightsTitle": "Event Highlights",
+      "highlight1": "Product showcase by 100+ registered SRIJON entrepreneurs from across Bangladesh",
+      "highlight2": "Live demonstrations of handmade and artisanal crafts, food, and textile products",
+      "highlight3": "Networking sessions connecting entrepreneurs with buyers and potential partners",
+      "highlight4": "SRIJON official shop inauguration ceremony with special guest appearances",
+      "highlight5": "Exclusive deals and discounts available only at the fair for visitors",
+      "registerCta": "Register to Participate",
+      "notifyCta": "Notify Me",
+      "infoCard1Title": "100+ Entrepreneurs",
+      "infoCard1Desc": "Discover unique products from Bangladesh's most talented local entrepreneurs and artisans.",
+      "infoCard2Title": "Open to Everyone",
+      "infoCard2Desc": "Whether you are a buyer, investor, or entrepreneur, all are welcome at the grand fair.",
+      "infoCard3Title": "Free Entry",
+      "infoCard3Desc": "Entry to the fair is completely free. Just register through SRIJON to secure your spot."
+    }
+  },
+  "terms": {
+    "s1": {
+      "title": "1. Introduction",
+      "content": "Welcome to SRIJON. We are an online marketplace and these are the terms and conditions governing your access and use of SRIJON along with its related sub-domains, sites, mobile app, services and tools (the \"Site\"). By using the Site, you hereby accept these terms and conditions and represent that you agree to comply with these terms and conditions (the \"User Agreement\"). This User Agreement is deemed effective upon your use of the Site which signifies your acceptance of these terms.\n\nThe Site reserves the right to change, modify, add, or remove portions of these Terms and Conditions at any time without any prior notification. Changes will be effective when posted on the Site with no other notice provided. Your continued use of the Site following the posting of changes constitutes your acceptance of those changes."
+    },
+    "s2": {
+      "title": "2. Your Account",
+      "content": "To access certain services offered by the platform, we may require that you create an account with us or provide personal information to complete the creation of an account. We may at any time in our sole and absolute discretion, invalidate the username and/or password without giving any reason or prior notice.\n\nYou are responsible for maintaining the confidentiality of your user identification, password, account details and related private information. You agree to accept this responsibility and ensure your account and its related details are maintained securely at all times. You should inform us immediately if you have any reason to believe that your password has become known to anyone else, or if the password is being, or is likely to be, used in an unauthorized manner."
+    },
+    "s3": {
+      "title": "3. Privacy",
+      "content": "Please review our Privacy Policy, which also governs your visit to the Site. The personal information / data provided to us by you or your use of the Site will be treated as strictly confidential, in accordance with the Privacy Policy and applicable laws and regulations. If you object to your information being transferred or used in the manner specified in the Privacy Policy, please do not use the Site."
+    },
+    "s4": {
+      "title": "4. License to Access the Site",
+      "content": "We require that by accessing the Site, you confirm that you can form legally binding contracts and therefore you confirm that you are at least 18 years of age or are accessing the Site under the supervision of a parent or legal guardian. We grant you a non-transferable, revocable and non-exclusive license to use the Site for the purposes of shopping for personal items and services as listed to be sold on the Site. Commercial use or use on behalf of any third party is prohibited, except as explicitly permitted by us in advance.\n\nThis Site or any portion of it (including but not limited to any copyrighted material, trademarks, or other proprietary information) may not be reproduced, duplicated, copied, sold, resold, visited, distributed or otherwise exploited for any commercial purpose without express written consent by us."
+    },
+    "s5": {
+      "title": "5. Your Conduct",
+      "content": "You must not use the website in any way that causes, or is likely to cause, the Site or access to it to be interrupted, damaged or impaired in any way. You are strictly prohibited from using the Site:\n\n• For fraudulent purposes, or in connection with a criminal offense or other unlawful activity\n• To send, use or reuse any material that does not belong to you or is illegal, offensive, deceptive, misleading, abusive, or otherwise injurious to third parties\n• To cause annoyance, inconvenience or needless anxiety\n• For any purposes other than what is intended by us"
+    },
+    "s6": {
+      "title": "6. Conditions of Sale",
+      "content": "Your order is a legal offer to the seller to buy the product or service displayed on our Site. The acceptance of your order is considered confirmed when the product is dispatched to you.\n\nAll prices are listed in Bangladeshi Taka (BDT). Items in your Shopping Cart will always reflect the most recent price displayed on the item's product detail page. We reserve the right to refuse or cancel any order. In the event that an item is mispriced, we may, at our own discretion, either contact you for instructions or cancel your order and notify you of such cancellation."
+    },
+    "s7": {
+      "title": "7. Disclaimer & Indemnity",
+      "content": "You acknowledge and undertake that you are accessing the services on the Site and transacting at your own risk. SRIJON shall neither be liable nor responsible for any actions or inactions of sellers nor any breach of conditions, representations or warranties by the sellers or manufacturers of the products.\n\nYou shall indemnify and hold harmless SRIJON, its subsidiaries, affiliates and their respective officers, directors, agents and employees, from any claim or demand, or actions including reasonable attorney's fees, made by any third party or penalty imposed due to or arising out of your breach of these Terms and Conditions."
+    },
+    "s8": {
+      "title": "8. Trademarks and Copyrights",
+      "content": "SRIJON and the SRIJON logo and other marks indicated on our Site are trademarks or registered trademarks. Our graphics, logos, page headers, button icons, scripts and service names are the trademarks or trade dress and may not be used in connection with any product or service that does not belong to us.\n\nAll intellectual property rights, whether registered or unregistered, in the Site, information content on the Site and all the website design, including but not limited to text, graphics, software, photos, video, music, sound, and their selection and arrangement shall remain our property."
+    },
+    "s9": {
+      "title": "9. Governing Law & Contact",
+      "content": "These terms and conditions are governed by and construed in accordance with the laws of The People's Republic of Bangladesh. You agree that the courts, tribunals and/or quasi-judicial bodies located in Dhaka, Bangladesh shall have the exclusive jurisdiction on any dispute arising inside Bangladesh under this Agreement.\n\nFor any questions about these Terms and Conditions, please contact us:\n• Email: support@srijon.com\n• Phone: +880 1611652888\n• Address: Dhaka, Bangladesh"
+    }
+  },
+  "privacy": {
+    "s1": {
+      "title": "1. Introduction",
+      "content": "SRIJON understands that our users care about their personal data and how it is collected, used, shared, protected and cared for. We are committed to handling your personal data in accordance with the applicable laws when you use any of the features and functions available on our Platform or Services.\n\nPlease read this Privacy Policy carefully. By clicking \"Sign Up\", \"Login\", or \"I Agree to SRIJON's Privacy Policy\", you acknowledge that you have read and understood the terms of this Privacy Policy and that you have agreed and consented to the collection, use, disclosure, storage, transfer and/or processing of your personal data as described herein."
+    },
+    "s2": {
+      "title": "2. Personal Data We Collect",
+      "content": "Depending on your use of our Platform, you may be asked to provide us with certain information. The personal data that you may provide includes:\n\n• Identity and Profile Data: your name, date of birth, gender, username and password, email address, telephone number, your interests, and any personal data in any photographs or videos that you upload onto our Platform.\n\n• Account and Transaction Data: your credit card details, bank account details, bank statements, delivery/billing address, payments and orders to and from you.\n\n• Usage Data: information about how and when you use the Platform, products and Services or view any content on the Platform.\n\n• Marketing and Communications Data: your interests, survey responses, preferences in receiving marketing materials from us and your communication preferences.\n\n• Location data: such as when you check for deals near you or the delivery/pick-up status of orders."
+    },
+    "s3": {
+      "title": "3. How We Use Your Data",
+      "content": "We use and disclose personal data for the following purposes:\n\n• To facilitate your use of the Services or access to the Platform.\n• To administer the online account that you may have set up with us.\n• To conduct analytics, research, business and development.\n• To better understand user experience with the Services and the Platform.\n• To improve the layout or content of the pages of the Platform and customize them for users.\n• To ascertain your identity in connection with fraud detection purposes.\n• To process any complaints, feedback, enforcement action and take-down requests.\n• To produce statistics and research for internal and statutory reporting.\n• To prevent or investigate any actual or suspected violations of our Terms of Use or Privacy Policy.\n• To comply with legal and regulatory requirements."
+    },
+    "s4": {
+      "title": "4. Who We Share Your Data With",
+      "content": "We may share your personal data with third parties for the above-mentioned purposes. These third parties may include:\n\n• Service providers in areas such as payment services, logistics and shipping, marketing, data analytics, customer service, and cloud computing or other hosting service providers.\n\n• Courts, tribunals, law enforcement agencies, governmental or regulatory authorities where we believe it is necessary to comply with applicable laws or to exercise, establish or defend our legal rights.\n\nIn disclosing your personal data to them, we endeavor to ensure that the third parties keep your personal data secure from unauthorized access, collection, use, disclosure, processing or similar risks."
+    },
+    "s5": {
+      "title": "5. Cookies and Tracking",
+      "content": "We or our authorized service providers may use cookies, web beacons, and other similar technologies in connection with your use of the Services or access of the Platform.\n\nWhen you visit the Platform, our company servers will automatically record data that your browser sends, such as IP addresses, date and time of access to the Platform, device type, unique device identification numbers, browser type, and broad geographic location.\n\nYou may be able to manage and delete cookies through your browser or device settings. However, certain cookies are required to enable core functionality, so please note that changing and deleting cookies may affect the functionality available on the Platform."
+    },
+    "s6": {
+      "title": "6. Security of Your Data",
+      "content": "To safeguard your personal data from unauthorized access, we have introduced appropriate administrative, physical and technical measures such as:\n\n• Restricting access to personal data to individuals who require access.\n• Maintaining technology products to prevent unauthorized computer access.\n• Using TLS 1.2 (Transport Layer Security) encryption technology when processing your financial details.\n• Implementing other security measures as required by applicable law.\n\nYou should be aware, however, that no method of transmission over the Internet or method of electronic storage is completely secure. While security cannot be guaranteed, we strive to protect the security of your information."
+    },
+    "s7": {
+      "title": "7. Retention of Data",
+      "content": "We will only retain your personal data for as long as we are either required or permitted to by law or as relevant for the purposes for which it was collected.\n\nWe will cease to retain your personal data by securely disposing of the same, or remove the means by which the data can be associated with you through anonymization, as soon as it is reasonable to assume that such retention no longer serves the purposes for which the personal data was collected."
+    },
+    "s8": {
+      "title": "8. Your Rights & Contact",
+      "content": "You may communicate the withdrawal of your consent to the continued use, disclosure, storing and/or processing of your personal data by contacting us using the contact details below.\n\nYou may request information about your personal data which we have collected, or enquire about the ways in which your personal data may have been used, disclosed, stored or processed by us via the personal account information setting on our Platform.\n\nYou may unsubscribe from receiving marketing information at any time in our mobile application settings or by using the unsubscribe function within the electronic marketing material.\n\nFor any questions about this Privacy Policy, please contact us:\n• Email: privacy@srijon.com\n• Phone: +880 1611652888\n• Address: Dhaka, Bangladesh"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Experience Quality with",
+      "highlight": "SRIJON",
+      "subtitle": "Discover the finest handcrafted and artisanal products. Curated collections delivered to your doorstep.",
+      "cta": "Shop Now",
+      "learnMore": "Our Collections"
+    },
+    "stats": {
+      "customers": "Active Customers",
+      "customersValue": "10k+",
+      "products": "Unique Products",
+      "productsValue": "500+",
+      "satisfaction": "Customer Satisfaction",
+      "satisfactionValue": "98%"
+    },
+      "ourProducts": {
+        "title": "Our Products",
+        "stockOut": "Stock Out",
+        "viewAll": "View All Products",
+        "buyNow": "Buy Now",
+        "addToCart": "Add to Cart",
+        "addedToCart": "Added"
+      },
+    "features": {
+      "apart": {
+        "title": "Why SRIJON Stands Apart",
+        "desc": "Everything you need to launch, grow, and scale your business — all in one ecosystem."
+      },
+      "craftsmen": {
+        "title": "A Platform for Local Artisans & Entrepreneurs",
+        "desc": "Empowering creators to showcase their talent to a wider audience"
+      },
+      "quality": {
+        "title": "Quality-Controlled, Design-Driven Collections",
+        "desc": "Curated products that combine craftsmanship and aesthetics"
+      },
+      "collection": {
+        "title": "Affordable to Premium Lifestyle Solutions",
+        "desc": "Offering options for every budget and style preference"
+      },
+      "experience": {
+        "title": "Seamless Omnichannel Experience",
+        "desc": "Enjoy our offerings both online and in-store effortlessly"
+      },
+      "productShowcase": {
+        "title": "Product Showcase",
+        "desc": "Present your products professionally."
+      },
+      "trainingSupport": {
+        "title": "Training & Support",
+        "desc": "Expert guidance and learning resources."
+      },
+      "businessNetworking": {
+        "title": "Business Networking",
+        "desc": "Build strong industry connections."
+      },
+      "globalReach": {
+        "title": "Global Reach",
+        "desc": "Expand beyond local markets."
+      },
+      "marketingExport": {
+        "title": "Marketing & Export",
+        "desc": "Strategic growth and export support."
+      }
+    },
+    "cta": {
+      "title": "Ready to take your business to the next level?",
+      "subtitle": "Join SRIJON today and start your growth journey",
+      "button": "Get Started Now"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Login to Your Account",
+      "email": "Email Address",
+      "password": "Password",
+      "button": "Login",
+      "noAccount": "Don't have an account?",
+      "registerLink": "Sign In here",
+      "forgotPassword": "Forgot Password?",
+      "ourMission": "Our Mission",
+      "missionStatement": "To bring the best of artisanal products to everyone.",
+      "missionDetails": "We focus on curating high-quality, handcrafted items that celebrate tradition and craftsmanship."
+    },
+    "register": {
+      "title": "Sign In",
+      "name": "Full Name",
+      "email": "Email Address",
+      "password": "Password",
+      "button": "Sign In",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Login here"
+    },
+    "verifyOTP": {
+      "title": "Verify OTP",
+      "subtitle": "Enter the 6-digit code sent to your email",
+      "placeholder": "Enter OTP",
+      "button": "Verify",
+      "resend": "Resend OTP"
+    },
+    "forgot": {
+      "title": "Forgot Password",
+      "subtitle": "Enter your email to reset password",
+      "email": "Email Address",
+      "button": "Send Reset Link",
+      "backToLogin": "Back to Login"
+    },
+    "reset": {
+      "title": "Reset Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "button": "Reset Password"
+    }
+  },
+   "form": {
+    "step1": {
+      "title": "Basic Information & Contact",
+      "subtitle": "Basic Information & Contact Details",
+      "productInfo": "Product Information",
+      "productType": "Product Type",
+      "selectProductType": "Select Product Type",
+      "category": "Category / Sub-category",
+      "selectSubCategories": "Select Sub-Categories",
+      "noSubCategoriesAvailable": "Please select a product type first",
+      "subcategoriesSelected": "selected",
+      "addMoreProduct": "Add More Product",
+      "brandName": "Brand Name",
+      "brandNamePlaceholder": "e.g. Green Harvest",
+      "registeredName": "Registered Name",
+      "registeredNamePlaceholder": "Official Business Name",
+      "optional": "(Optional)",
+      "ownerInfo": "Owner Information",
+      "ownerName": "Owner Name",
+      "ownerAge": "Owner Age",
+      "gender": "Gender",
+      "genderOptions": ["Male", "Female", "Other"],
+      "ownershipType": "Ownership Type",
+      "ownershipTypeOptions": ["Single", "Partnership", "Ltd. Company"],
+      "partnerName": "Partner Name",
+      "contactInfo": "Contact Information",
+      "mobileNumber": "Mobile Number",
+      "email": "Email",
+      "whatsappSame": "WhatsApp number is same as mobile",
+      "whatsappNumber": "WhatsApp Number",
+      "address": "Address",
+      "division": "Division",
+      "divisionPlaceholder": "Select Division",
+      "district": "District",
+      "districtPlaceholder": "Select District",
+      "thana": "Thana",
+      "thanaPlaceholder": "Select Thana",
+      "postOffice": "Post Office",
+      "postOfficePlaceholder": "e.g. Sadar",
+      "postCode": "Post Code",
+      "postCodePlaceholder": "e.g. 1200",
+      "detailedAddress": "Village, Road, House No",
+      "detailedAddressPlaceholder": "House No, Road No, Village, etc."
+    },
+    "step2": {
+      "title": "Product Details",
+      "subtitle": "Provide your product production and pricing information",
+      "productName": "Product Name",
+      "basicInfo": "Product Basic Information",
+      "productNamePlaceholder": "Example: Organic Honey",
+      "shortDescription": "Short Description",
+      "descriptionPlaceholder": "Write product features and characteristics...",
+      "rawMaterialSource": "Raw Material Source",
+      "rawMaterialSourceOptions": {
+        "local": "Local",
+        "imported": "Imported"
+      },
+      "productionType": "Production Type",
+      "productionTypeOptions": {
+        "handmade": "Handmade",
+        "semiAutomatic": "Semi-Auto",
+        "automatic": "Automatic"
+      },
+      "productionPlace": "Production Place",
+      "productionPlaceOptions": {
+        "home": "Home",
+        "factory": "Factory"
+      },
+      "pricingTitle": "Pricing List ",
+      "costPerUnit": "Cost Per Unit",
+      "wholesalePrice": "Wholesale Price",
+      "retailPrice": "Retail Price",
+      "moq": "Minimum Order (MOQ)",
+      "bulkDiscount": "Bulk Discount Available?",
+      "capacityMachinery": "Capacity & Machinery",
+      "productionCapacity": "Production Capacity (Monthly)",
+      "capacityPlaceholder": "e.g.: 1000 pieces",
+
+      "workforce": "Workforce",
+      "maleWorkers": "Male Workers",
+      "femaleWorkers": "Female Workers"
+    },
+    "step3": {
+      "title": "Market & Business Status",
+      "subtitle": "Define your customer base and business reach",
+      "buyerType": "Who buys your products?",
+      "retailShop": "Retail Shop",
+      "corporate": "Corporate",
+      "exportBuyer": "Export",
+      "online": "Online",
+      "exportMarketsTitle": "Export Destinations",
+      "searchCountries": "Search and select export countries",
+      "searchPlaceholder": "Add a country (e.g., Japan, UK)...",
+      "selectedMarkets": "Selected Export Markets:",
+      "buyersIn": "Number of buyers in",
+      "buyers": "Buyers",
+      "noCountries": "No countries found",
+      "onlinePresenceTitle": "Online Presence",
+      "onlineBuyerTitle": "Online Buyer Information",
+      "onlineBuyerNote": "Provide at least one link (Facebook Page or Website)",
+      "facebookLink": "Facebook Page Link",
+      "websiteLink": "Website Link",
+      "customerStatsTitle": "Customer Statistics",
+      "totalCustomers": "Total Customers",
+      "regularCustomers": "Regular Customers",
+      "monthlySales": "Monthly Sales (BDT)",
+      "businessAge": "Business Age (Years)",
+      "documentsTitle": "Registration Documents",
+      "tradeLicense": "Trade License",
+      "tin": "TIN Certificate",
+      "bsti": "BSTI Approval",
+      "exportLicense": "Export License",
+      "other": "Other",
+      "certificateName": "Certificate/Document Name",
+      "uploadFile": "Upload File (PDF/IMG)",
+      "uploading": "Uploading...",
+      "uploaded": "Uploaded",
+      "bankTitle": "Banking Information",
+      "hasBankAccount": "Do you have a bank account?",
+      "yes": "Yes",
+      "no": "No",
+      "bankName": "Bank Name",
+      "branch": "Branch",
+      "accountHolder": "Account Holder Name",
+      "accountNumber": "Account Number",
+      "routingNumber": "Routing Number",
+      "mobileBankingTitle": "Mobile Wallets",
+      "placeholders": {
+        "facebook": "https://facebook.com/yourpage",
+        "website": "https://yourwebsite.com",
+        "certificateName": "e.g., Import License, Business License, etc.",
+        "buyers": "Buyers",
+        "bankName": "Bank Name",
+        "branch": "Branch",
+        "accountNumber": "Account No",
+        "businessAge": "e.g. 6",
+        "totalCustomers": "e.g. 50",
+        "regularCustomers": "e.g. 30",
+        "monthlySales": "e.g. 50000"
+      }
+    },
+    "step4": {
+      "title": "Future Plans & Support",
+      "subtitle": "Tell us where you want to take your business",
+      "futureGoals": "Goals for the Next 1-3 Years",
+      "productionIncrease": "Expansion Plan",
+      "newProducts": "New Product Ideas",
+      "interestOnlineExport": "Are you interested in online export?",
+      "supportTitle": "How can SRIJON help you?",
+      "supportNote": "(Select any number)",
+      "marketing": "Marketing & Branding",
+      "marketingDesc": "Help reaching new customers",
+      "packaging": "Improved Packaging",
+      "packagingDesc": "Material & design assistance",
+      "quality": "Quality Control",
+      "qualityDesc": "Quality certification",
+      "financing": "Financial Support",
+      "financingDesc": "Loans or grants",
+      "exportSupport": "Export Logistics",
+      "exportSupportDesc": "Shipping & customs support",
+      "training": "Skills Training",
+      "trainingDesc": "Workshops for staff",
+      "placeholders": {
+        "goals": "e.g., Expand to 3 new districts and increase production by 50%...",
+        "production": "How will you increase capacity?",
+        "newProducts": "What new products do you want to launch?"
+      }
+    },
+    "step5": {
+      "title": "Media Upload",
+      "subtitle": "Upload high-quality images to build trust with buyers",
+      "productImagesTitle": "Product Gallery",
+      "productImagesNote": "(3-5 recommended)",
+      "imagesAdded": "images added",
+      "addImages": "Add Images",
+      "uploading": "Uploading...",
+      "packagingImage": "Packaging Image",
+      "packagingSubtitle": "Show how your product is packaged",
+      "productionImage": "Production Process",
+      "productionSubtitle": "Show your farm or factory",
+      "videoTitle": "Promotional Video",
+      "videoNote": "(Optional)",
+      "uploadVideo": "Click to upload video",
+      "videoFormats": "MP4, WebM (max 50MB)",
+      "uploadingVideo": "Uploading video (this may take time)...",
+      "removeVideo": "Remove Video",
+      "uploadImage": "Upload Image",
+      "saveAndReview": "Save & Review",
+      "selectImages": "Select Images",
+      "selectImage": "Select Image",
+      "selectVideo": "Select Video",
+      "remove": "Remove",
+      "optional": "Optional Step",
+      "optionalText": "You can add these later from dashboard",
+      "dragAndDrop": "Drag and drop or browse files",
+      "clickToBrowse": "Click to browse",
+      "changeImage": "Change Image",
+      "saving": "Saving...",
+      "updating": "Updating...",
+      "uploadBlocked": "Upload blocked",
+      "addImage": "Add Image",
+      "uploaded": "Uploaded",
+      "removeImage": "Remove Image",
+      "jpgPng": "JPG, PNG",
+      "packagingImageSubtitle": "Upload an image of your product packaging.",
+      "productionImageSubtitle": "Show how your product is made."
+    },
+    "step6": {
+      "title": "Final Review",
+      "subtitle": "Please verify your information before official submission",
+      "basicInfo": "Basic Information",
+      "productDetails": "Product Details",
+      "visualAssets": "Visual Assets",
+      "attachedDocuments": "Attached Documents",
+      "termsTitle": "Terms & Conditions",
+      "accuracyRequired": "You must certify that all information is correct to proceed.",
+      "accuracyConsent": "I hereby certify that the information provided is true, accurate, and complete. I understand that false information may result in rejection.",
+      "marketingConsent": "(Optional) I consent to SRIJON using my business information for marketing and export opportunities.",
+      "digitalSignature": "Digital Signature",
+      "typeName": "Type Name",
+      "uploadImage": "Upload Image",
+      "enterFullName": "Enter your full name",
+      "yourSignature": "Your Signature",
+      "clickToUploadSignature": "Click to upload signature",
+      "submitApplication": "Submit",
+      "reviewTitle": "Review Your Information",
+      "marketBusiness": "Market & Business",
+      "futurePlans": "Future Plans",
+      "mediaUploads": "Media Uploads",
+      "consentTitle": "Consent & Declaration",
+      "ownerName": "Owner Name",
+      "gender": "Gender",
+      "brandName": "Brand Name",
+      "mobileNumber": "Mobile Number",
+      "email": "Email",
+      "location": "Location",
+      "detailedAddress": "Detailed Address",
+      "productName": "Product Name",
+      "category": "Category",
+      "productionType": "Production Type",
+      "productionPlace": "Production Place",
+      "productionCapacity": "Production Capacity",
+      "wholesalePrice": "Wholesale Price",
+      "signaturePreview": "Signature Preview",
+      "canBeUploadedLater": "Can be uploaded later from Dashboard"
+    },
+    "buttons": {
+      "back": "Back",
+      "next": "Save & Next",
+      "submitApplication": "Submit",
+      "cancel": "Cancel",
+      "save": "Save",
+      "delete": "Delete",
+      "download": "Download",
+      "close": "Close",
+      "skipStep": "Skip Step"
+    }
+  },
+  "dashboard": {
+    "toast": {
+      "title": "Agreement Paper Not Yet Generated",
+      "message": "To receive your agreement paper, please complete at least",
+      "uploadPhotos": "upload all photos in the gallery",
+      "checkRedSections": "check the red highlighted sections below",
+      "and": "and",
+      "galleryImagesMissing": "Gallery images are missing"
+    },
+    "profileCompletion": "Profile Completion",
+    "loading": "Loading your profile...",
+    "welcome": "Welcome to SRIJON!",
+    "noDataMessage": "You haven't submitted your business registration yet. Let's create your profile together.",
+    "startWizard": "Start Registration Wizard",
+    "title": "User Dashboard",
+    "status": {
+      "active": "Active",
+      "draft": "Draft"
+    },
+    "welcomeUser": "Welcome, ",
+    "notProvided": "Not Provided",
+    "incomplete": "Incomplete",
+    "progressHint": "Complete at least 80% to unlock the Agreement PDF download.",
+    "buttons": {
+      "downloadPDF": "Download PDF",
+      "editProfile": "Edit Profile",
+      "downloadAgreement": "Download Agreement PDF"
+    },
+    "metrics": {
+      "businessAge": "Business Age",
+      "monthlySales": "Monthly Sales",
+      "totalCustomers": "Total Customers"
+    },
+    "years": "years",
+    "notApplicable": "N/A",
+    "sections": {
+      "productProduction": "Product & Production",
+      "visualGallery": "Visual Gallery",
+      "documents": "Documents",
+      "ownerInformation": "Owner Information",
+      "marketStatus": "Market & Business Status",
+      "mediaDocuments": "Photo Gallery & Documents"
+    },
+    "labels": {
+      "productName": "Product Name",
+      "brandName": "Brand Name",
+      "category": "Category",
+      "productType": "Product Type",
+      "retailPrice": "Retail Price",
+      "productionType": "Production Type",
+      "capacity": "Production Capacity",
+      "place": "Production Place",
+      "workforce": "Workforce",
+      "male": "Male",
+      "female": "Female",
+      "wholesalePrice": "Wholesale Price",
+      "moq": "MOQ",
+      "bulkDiscount": "Bulk Discount",
+      "rawMaterial": "Raw Material Source",
+
+      "productDescription": "Product Description",
+      "ownerName": "Owner Name",
+      "gender": "Gender",
+      "age": "Age",
+      "ownershipType": "Ownership Type",
+      "partnerName": "Partner Name",
+      "mobile": "Mobile",
+      "email": "Email",
+      "whatsApp": "WhatsApp",
+      "division": "Division",
+      "district": "District",
+      "thana": "Thana",
+      "postCode": "Post Code",
+      "detailedAddress": "Detailed Address",
+      "regularCustomers": "Regular Customers",
+      "exportInterest": "Export Interest",
+      "bankAccount": "Bank Account",
+      "bankName": "Bank Name",
+      "accountNumber": "Account Number"
+    },
+    "gallery": {
+      "productShowcase": "Product Showcase",
+      "product": "Product",
+      "processPackaging": "Process & Packaging",
+      "packaging": "Packaging",
+      "productionProcess": "Production Process",
+      "noImages": "No images uploaded yet."
+    },
+    "myBrand": "My Brand",
+    "docs": {
+      "tradeLicense": "Trade License",
+      "tin": "TIN Certificate",
+      "bsti": "BSTI Certificate",
+      "exportLicense": "Export License"
+    },
+    "futureGoals": {
+      "title": "Future Goals",
+      "noGoals": "No specific goals set yet."
+    },
+    "badges": {
+      "exportInterest": "Interested in Export",
+      "needFunding": "Funding Needed",
+      "needTraining": "Training Needed"
+    }
+  },
+  "footer": {
+    "description": "Where Bangladesh Creates. The World Appreciates.",
+    "quickLinks": "Quick Links",
+    "connectWithUs": "Follow Us",
+    "allRightsReserved": "All rights reserved.",
+    "contact": {
+      "email": "Email: support@srijon.com",
+      "phone": "Phone: +880 1611652888",
+      "address": "Address: Dhaka, Bangladesh"
+    }
+  },
+  "about": {
+    "title": "About SRIJON",
+    "hero": {
+      "whoWeAre": "Who We Are",
+      "spread of": "SRIJON - Spread of",
+      "creativity": "Creativity",
+      "subtitle": "A trusted branding and market connectivity platform for new entrepreneurs and artisans."
+    },
+    "intro": {
+      "part1": "SRIJON is a comprehensive platform designed to empower business owners by providing them with the tools and resources needed to",
+      "highlight": "grow their businesses",
+      "part2": "and reach a wider audience."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "statement": "To bridge the gap between local businesses and global markets.",
+      "details": "We achieve this by offering a seamless registration process, business support services, and access to a vast network of buyers and partners."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "statement": "To become the most popular and influential lifestyle retail brand in Bangladesh.",
+      "whyWeDoIt": "Why We Do It",
+      "details": "We achieve this by offering a streamlined registration process, comprehensive business support services, and access to a vast network of buyers and partners."
+    },
+    "offerings": {
+      "title": "What We Offer",
+      "subtitle": "Comprehensive tools tailored for modern businesses.",
+      "registration": {
+        "title": "Easy Registration",
+        "desc": "Seamless business onboarding process."
+      },
+      "showcase": {
+        "title": "Product Showcase",
+        "desc": "A dedicated platform to display your harvest."
+      },
+      "training": {
+        "title": "Training & Support",
+        "desc": "Access to expert resources and guides."
+      },
+      "networking": {
+        "title": "Business Networking",
+        "desc": "Connect with potential buyers and partners."
+      },
+      "globalReach": {
+        "title": "Global Reach",
+        "desc": "Bridge the gap to international markets."
+      },
+      "marketing": {
+        "title": "Marketing & Export",
+        "desc": "Strategic support to grow your brand."
+      }
+    },
+    "cta": {
+      "title": "Ready to grow with us?",
+      "description": "Register your business today and join a growing community of entrepreneurs.",
+      "button": "Get Started"
+    }
+  },
+  "validation": {
+    "required": "This field is required",
+    "email": "Please provide a valid email",
+    "phone": "Please provide a valid phone number",
+    "minLength": "Minimum {count} characters required",
+    "maxLength": "Maximum {count} characters allowed",
+    "minAge": "Minimum age is {age}",
+    "minValue": "Minimum value is {value}",
+    "buyerTypeRequired": "Please select at least one buyer type",
+    "exportCountryRequired": "Please select at least one export country",
+    "buyerCountRequired": "Please enter number of buyers for all selected countries",
+    "onlineLinkRequired": "Please provide at least one link (Facebook or Website)",
+    "certificateNameRequired": "Please enter the certificate/document name",
+    "fileRequired": "Please upload the document file",
+    "bankRequired": "Bank account information is required",
+    "onlineExportRequired": "Interest in online export is required",
+    "futurePlanRequired": "Please provide at least one future plan or goal",
+    "productImageRequired": "At least one product image is required",
+    "consentRequired": "You must certify that all information is correct",
+    "signatureRequired": "Digital signature is required"
+  },
+
+  "visualGallery": {
+    "title": "Visual Gallery",
+    "loading": "Loading...",
+    "uploading": "Uploading...",
+    "productShowcase": "Product Showcase",
+    "images": "images",
+    "addImages": "Add Images",
+    "max10": "Max 10",
+    "deleteImage": "Delete image",
+    "noProductImages": "No product images yet. Click \"Add Images\" to upload.",
+    "packagingImage": "Packaging Image",
+    "productionProcess": "Production Process",
+    "registrationDocuments": "Registration Documents",
+    "tradeLicense": "Trade License",
+    "tinCertificate": "TIN / BIN Certificate",
+    "bstiApproval": "BSTI Approval",
+    "exportLicense": "Export License",
+    "change": "Change",
+    "delete": "Delete",
+    "clickToUpload": "Click to upload",
+    "notUploaded": "Not uploaded",
+    "view": "View",
+    "replace": "Replace",
+    "upload": "Upload",
+    "jpgPngOrPdf": "JPG, PNG or PDF",
+    "item": "item",
+    "items": "items"
+  },
+
+  "profilePicture": {
+    "altText": "Profile",
+    "previewAlt": "Preview",
+    "changePicture": "Change Picture",
+    "uploadPicture": "Upload Picture",
+    "changePhoto": "Change Photo",
+    "uploadPhoto": "Upload Photo",
+    "remove": "Remove",
+    "previewTitle": "Preview Photo",
+    "previewHint": "Looks good? Click confirm to save this as your new profile picture.",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "invalidFileType": "Please select a valid image file (JPG, PNG, WEBP)",
+    "fileTooLarge": "Image size must be less than 5MB",
+    "uploadFailed": "Failed to upload profile picture",
+    "deleteFailed": "Failed to delete profile picture",
+    "confirmRemove": "Are you sure you want to remove your profile picture?"
+  },
+
+
+   "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "or": "or",
+    "and": "and",
+    "of": "of",
+    "to": "to",
+    "from": "from",
+    "in": "in",
+    "at": "at",
+    "years": "Years",
+    "number": "Number",
+    "amount": "Amount",
+    "image": "Image",
+    "change": "Change",
+    "submit": "Submit",
+    "view": "View",
+    "backToEdit": "Back to Edit",
+    "uploading": "Uploading..."
+  },
+
+  "agreement": {
+    "checkboxLabel": "I Agree to the Terms & Conditions",
+    "proceedButton": "Proceed to Registration",
+    "scrollToEnableMessage": "⬇️ Please scroll to the bottom to continue"
+  },
+  "admin": {
+    "nav": {
+      "analytics": "Analytics Overview",
+      "analyticsDesc": "Stats & charts",
+      "directory": "Business Directory",
+      "directoryDesc": "All registrations",
+      "pending": "Pending Approvals",
+      "pendingDesc": "Review new requests",
+      "inventory": "Marketplace Inventory",
+      "inventoryDesc": "Manage live products",
+      "agreements": "Sent Agreements",
+      "agreementsDesc": "Agreement tracking",
+      "completed": "Completed Profiles",
+      "completedDesc": "Score over 80%",
+      "orders": "Platform Orders",
+      "ordersDesc": "Manage all orders",
+      "reviews": "Review Moderation",
+      "reviewsDesc": "Approve or Reject"
+    },
+    "system": {
+      "title": "Admin System",
+      "controlCenter": "Control Center ⚙️",
+      "authorizedUser": "Authorized User",
+      "portal": "AggriGo Portal 🚀"
+    }
+  }
+}
